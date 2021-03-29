@@ -1,0 +1,17 @@
+version: '3'
+services:
+  rest-service:
+    build: ./rest-square-service
+    image: vinsdocker/rest-square-service
+  rsocket-service:
+    build: ./rsocket-square-service
+    image: vinsdocker/rsocket-square-service
+  aggregate-service:
+    build: ./aggregate-service
+    image: vinsdocker/aggregate-service
+    environment:
+      - REST_SERVICE_URL=http://rest-service:6566/rest-service/rest/square/
+      - RSOCKET_SERVICE_HOST=rsocket-service
+      - RSOCKET_SERVICE_PORT=6565
+    ports:
+      - 8080:8080
