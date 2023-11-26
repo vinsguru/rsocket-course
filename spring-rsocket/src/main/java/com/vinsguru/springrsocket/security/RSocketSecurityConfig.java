@@ -44,10 +44,12 @@ public class RSocketSecurityConfig {
                     .simpleAuthentication(Customizer.withDefaults())
                     .authorizePayload(
                             authorize -> authorize
-                                            .setup().hasRole("TRUSTED_CLIENT")
-                                          //  .route("*.*.*.table").hasRole("ADMIN")
-                                          //  .route("math.service.secured.square").hasRole("USER")
-                                            .anyRequest().authenticated()
+                                    .setup().permitAll()
+                                    .anyRequest().permitAll()
+                                    .anyExchange().permitAll()
+                            // .setup().hasRole("TRUSTED_CLIENT")
+                            //  .route("*.*.*.table").hasRole("ADMIN")
+                            //  .route("math.service.secured.square").hasRole("USER")
                     ).build();
     }
 
