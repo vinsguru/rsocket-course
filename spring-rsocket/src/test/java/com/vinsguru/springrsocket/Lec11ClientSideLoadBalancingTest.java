@@ -35,7 +35,7 @@ public class Lec11ClientSideLoadBalancingTest {
         for (int i = 0; i < 50; i++) {
             requester.route("math.service.print").data(new ComputationRequestDto(i)).send().subscribe();
 
-            Thread.sleep(2000);
+            Thread.sleep(200);
         }
 
     }
